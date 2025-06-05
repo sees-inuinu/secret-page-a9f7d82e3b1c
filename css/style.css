@@ -1,0 +1,572 @@
+/*---------------------------
+共通
+---------------------------*/
+.cf:before,
+.cf:after {
+  content: " ";
+  display: table;
+}
+.cf:after {
+  clear: both;
+}
+
+.pc {
+  display: block;
+}
+.sp {
+  display: none;
+}
+.sp-nav {
+  display: none;
+}
+
+.zenmaru {
+  font-family: "Zen Maru Gothic", sans-serif;
+}
+
+.switch {
+  width: 183px;
+}
+
+.switch a {
+  display: block;
+  background: #ddd6c3;
+  color: #5f5447;
+  font-size: 10px;
+  font-weight: 500;
+  border-radius: 100px;
+  padding: 5px 0 5px 36px;
+  position: relative;
+  transition: 0.3s;
+  text-align: 1;
+  letter-spacing: 0.15rem;
+}
+
+/* コンテンツタイトル */
+.title {
+  text-align: center;
+  margin: 0 auto;
+  padding: 30px 0;
+  margin-bottom: 10px;
+  border-bottom: 0.2px dotted var(--border-color);
+}
+
+div.title h1 {
+  font-family: "Archivo Black", sans-serif;
+  font-weight: 500;
+  font-size: 40px;
+}
+
+.scenario_data {
+  padding-top: 15px;
+  padding-bottom: 35px;
+}
+
+.scenario_title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.scenario_date {
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+
+.adage {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  line-height: 2em;
+}
+
+/* バルーンスタイル　雑談 */
+.chat_talk {
+  width: 300px;
+  border: solid 1.5px var(--border-color);
+  border-radius: 12px;
+  margin-top: 30px;
+  padding: 0 20px 10px;
+}
+
+.chat_talktitle {
+  position: relative;
+  top: -12px;
+  text-align: center;
+  border: solid 1.5px var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-color);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  /* ← 以下が可変幅にするための設定 */
+  display: inline-flex;
+  padding: 5px 20px; /* ← 文字まわりに余白をつける */
+  width: auto; /* ← 明示的にautoに（あってもなくてもOK） */
+  white-space: nowrap; /* ← 複数行に折り返さない */
+  align-items: center; /* ← 縦中央 */
+  justify-content: center; /* ← 横中央 */
+}
+/* バルーンスタイル　メイン */
+.chat_main {
+  position: relative; /* これが重要 */
+  width: 350px;
+  border: solid 1.5px var(--border-color);
+  border-radius: 12px;
+  padding: 30px 20px 10px;
+  margin: 30px auto 0;
+}
+
+.chat_maintitle {
+  position: absolute;
+  top: -12px; /* chat_talkの上から少しはみ出す */
+  left: 50%; /* 横中央基準 */
+  transform: translateX(-50%); /* 完全な横中央に調整 */
+  text-align: center;
+  border: solid 1.5px var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-color);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  /* ← 以下が可変幅にするための設定 */
+  display: inline-flex;
+  padding: 5px 20px; /* ← 文字まわりに余白をつける */
+  width: auto; /* ← 明示的にautoに（あってもなくてもOK） */
+  white-space: nowrap; /* ← 複数行に折り返さない */
+  align-items: center; /* ← 縦中央 */
+  justify-content: center; /* ← 横中央 */
+}
+/* バルーンスタイル　情報、秘匿 */
+.chat_info {
+  width: 300px;
+  border: solid 1.5px var(--border-color);
+  border-radius: 12px;
+  margin: 30px 0 0 auto; /* ← autoを右側に指定して右寄せ */
+  padding: 30px 20px 15px;
+  position: relative; /* ← 子要素の絶対位置指定の基準に */
+}
+
+.chat_infotitle {
+  position: absolute;
+  top: -12px;
+  right: 15px; /* ← .chat_talk の右端から10px内側に配置 */
+
+  text-align: center;
+  border: solid 1.5px var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-color);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+
+  /* ← 以下が可変幅にするための設定 */
+  display: inline-flex;
+  padding: 5px 20px; /* ← 文字まわりに余白をつける */
+  width: auto; /* ← 明示的にautoに（あってもなくてもOK） */
+  white-space: nowrap; /* ← 複数行に折り返さない */
+  align-items: center; /* ← 縦中央 */
+  justify-content: center; /* ← 横中央 */
+  align-items: center;
+  justify-content: center;
+}
+
+/* チャット内テキスト */
+.chat_text {
+  padding: 3px 0;
+  border-bottom: dashed 1px var(--border-color);
+}
+
+.chat_text:last-of-type {
+  border-bottom: none;
+}
+
+.chat_parson {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/*---------------------------
+背景
+---------------------------*/
+
+.bg-back {
+  background-color: #d0b5a0;
+  background-image: linear-gradient(180deg, #d0b5a0 52%, #877769 100%);
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  padding: 50px;
+  background-attachment: fixed;
+  z-index: -1;
+}
+
+.bg-back__copy {
+  position: absolute;
+  left: 17px;
+  top: 43%;
+  font-size: 10px;
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 500;
+  color: #5f5447;
+  writing-mode: vertical-rl;
+  text-orientation: sideways;
+}
+
+.bg-back__bg-inner {
+  background-color: #d0b5a0;
+  border: 1px solid #5f5447;
+  box-sizing: border-box;
+  border-radius: 100px;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.bg-back__round li {
+  width: 11px;
+  height: 11px;
+  border: 1px solid #5f5447;
+  box-sizing: border-box;
+  border-radius: 100px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.bg-back__round li:nth-child(2) {
+  left: auto;
+  right: 20px;
+}
+
+.bg-back__round li:nth-child(3) {
+  top: auto;
+  right: 20px;
+  bottom: 20px;
+}
+
+.bg-back__round li:nth-child(4) {
+  top: auto;
+  left: auto;
+  right: 20px;
+  bottom: 20px;
+}
+
+.bg-back__logo {
+  font-family: "Archivo Black", sans-serif;
+  position: absolute;
+  left: 77px;
+  top: 73%;
+  font-size: 530%;
+  line-height: 75px;
+  color: #5f5447;
+}
+
+@media only screen and (max-width: 830px) {
+  .bg-back__logo {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 620px) {
+  .bg-back {
+    display: none;
+  }
+}
+
+/*---------------------------
+ヘッダー
+---------------------------*/
+
+.header {
+  position: fixed;
+  top: 50%;
+  left: 1045px;
+  z-index: 1;
+  transform: translateX(0) translateY(-50%);
+}
+
+@media only screen and (min-width: 1441px) {
+  .header {
+    position: fixed;
+    left: 70%;
+    z-index: 1;
+  }
+}
+
+@media only screen and (max-width: 1440px) {
+  .header {
+    left: calc(1045 / 1440 * 100vw);
+    z-index: 1;
+  }
+  .content {
+    margin: 0 0 0 280px !important;
+  }
+}
+
+@media only screen and (min-width: 1360px) {
+  .header {
+    left: calc(1070 / 1440 * 100vw) !important;
+    z-index: 1;
+  }
+}
+
+@media only screen and (max-width: 1270px) {
+  .content {
+    margin: 0 0 0 180px !important;
+  }
+}
+
+@media only screen and (max-width: 1140px) {
+  .header {
+    display: none !important;
+  }
+  .content {
+    margin: 0 auto !important;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .content {
+    margin: 0 auto !important;
+  }
+  .bg-back__logo {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .content {
+    width: 100% !important;
+    box-shadow: none !important;
+    border-left: none !important;
+    border-right: none !important;
+  }
+}
+
+.header__switch {
+  margin: 0 auto;
+}
+
+.header__ttl {
+  margin: 20px auto;
+  color: #5f5447;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.header__nav {
+  margin-top: auto;
+}
+
+.header__item {
+  font-family: "Zen Maru Gothic", sans-serif;
+  width: 150px;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0 auto 20px;
+}
+
+.header__item:last-child {
+  margin: 0 auto 30px;
+}
+
+.header__link.is-active {
+  color: #bbff32;
+}
+
+.header__link.is-active::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: -10px;
+  background: #bbff32;
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+}
+
+.header__link {
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  display: block;
+  color: #5f5447;
+  font-size: 11px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.header__link:hover {
+  color: #877769;
+}
+
+.header__btn {
+  width: 210px;
+  margin: 0 auto 0;
+}
+
+.header__btn a {
+  display: block;
+  background-color: #bbff32;
+  border: 1px solid #877769;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #877769;
+  text-align: center;
+  padding: 12px;
+  transition: 0.3s;
+  position: relative;
+}
+
+.header__btn a:hover {
+  transform: scale(1.05);
+}
+
+.header__btn a::after {
+  content: "▶";
+  position: absolute;
+  top: 12px;
+  right: 13px;
+  transition: 0.3s;
+}
+
+.header__here {
+  letter-spacing: 0.15rem;
+  width: 183px;
+  margin: 15px auto 0;
+  color: #5f5447;
+  border-bottom: 1px solid #5f5447;
+  padding-bottom: 10px;
+  font-size: 9px;
+  text-align: center;
+}
+
+.header__character {
+  letter-spacing: 0.15rem;
+  width: 183px;
+  margin: 20px auto 0;
+  color: #453e39;
+  padding-bottom: 10px;
+  font-size: 11px;
+  text-align: center;
+}
+
+/*---------------------------
+コンテンツ
+---------------------------*/
+.content {
+  width: 600px;
+  margin: 0 auto;
+  box-sizing: content-box;
+}
+
+.content_color_ep01 {
+  background-image: linear-gradient(0deg, #f5b95c, #d0b5a0 1%);
+  background-color: #d0b5a0;
+  border-left: 20px solid;
+  border-right: 20px solid;
+  border-image: linear-gradient(0deg, #273063, #453e39 1%) 1;
+}
+
+.content_color_ep02 {
+  background-image: linear-gradient(0deg, #7c49cb, #f5b95c 1%);
+  border-left: 20px solid;
+  border-right: 20px solid;
+  border-image: linear-gradient(0deg, #d5fc6a, #273063 1%) 1;
+}
+
+.content_color_ep03 {
+  background-image: linear-gradient(0deg, #f3942a, #7c49cb 1%);
+  border-left: 20px solid;
+  border-right: 20px solid;
+  border-image: linear-gradient(0deg, #282016, #d5fc6a 1%) 1;
+}
+
+.content_color_ep04 {
+  background-image: linear-gradient(0deg, #911d1a, #f3942a 1%);
+  border-left: 20px solid;
+  border-right: 20px solid;
+  border-image: linear-gradient(0deg, #7ae3c2, #282016 1%) 1;
+}
+
+.content_color_ep05 {
+  background-image: linear-gradient(0deg, #c5ca8e, #911d1a 1%);
+  border-left: 20px solid;
+  border-right: 20px solid;
+  border-image: linear-gradient(0deg, #0e3112, #7ae3c2 1%) 1;
+}
+
+.content_color_ep06 {
+  background-color: #c5ca8e;
+  border-left: 20px solid #0e3112;
+  border-right: 20px solid #0e3112;
+}
+
+@media only screen and (max-width: 1100px) {
+  .content {
+    margin: 0 0 0 80px;
+  }
+}
+
+@media only screen and (max-width: 830px) {
+  .content {
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .content {
+    width: 100%;
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+  }
+}
+
+.main {
+  width: 560px;
+  margin: 0 auto;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/*---------------------------
+Ep.01
+---------------------------*/
+.ep01 {
+  color: #453e39;
+  --border-color: #453e39;
+  --bg-color: #d0b5a0;
+}
+
+.ep02 {
+  color: #273063;
+  --border-color: #273063;
+  --bg-color: #f5b95c;
+}
+
+.ep03 {
+  color: #d5fc6a;
+  --border-color: #d5fc6a;
+  --bg-color: #7c49cb;
+}
+
+.ep04 {
+  color: #282016;
+  --border-color: #282016;
+  --bg-color: #f3942a;
+}
+
+.ep05 {
+  color: #7ae3c2;
+  --border-color: #7ae3c2;
+  --bg-color: #911d1a;
+}
+
+.ep06 {
+  color: #0e3112;
+  --border-color: #0e3112;
+  --bg-color: #c5ca8e;
+}
