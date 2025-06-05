@@ -1,6 +1,13 @@
 /*---------------------------
 共通
 ---------------------------*/
+/* html,
+body {
+  background-color: black;
+  color: black;
+  visibility: hidden;
+} */
+
 .cf:before,
 .cf:after {
   content: " ";
@@ -184,6 +191,11 @@ div.title h1 {
 .chat_parson {
   font-weight: 700;
   font-size: 13px;
+}
+
+.success {
+  color: #2195f3;
+  font-weight: 600;
 }
 
 /*---------------------------
@@ -379,7 +391,7 @@ div.title h1 {
 .header__link.is-active::before {
   content: "";
   position: absolute;
-  top: 8px;
+  top: 5px;
   left: -10px;
   background: #bbff32;
   width: 10px;
